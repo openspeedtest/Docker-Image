@@ -43,11 +43,36 @@ body {
   display: block;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+html {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+}
+ 
+.Credits {
+color: rgb(125 119 119);
+text-align: center;
+font-size:14px;
+font-family: Roboto-Medium, Roboto;
+font-weight: 500;
+} 
+.Credits a {
+  text-decoration: none;
+  color: rgb(113, 113, 113);
+}
+.Credits a:hover {
+color: #14b0fe;
+}
+
 .ConnectError {
   display: none;
+
 }
 
 .openSpeedtestApp {
+ 
   height: 100vh;
   width: 100vw;
   display: none;
@@ -348,5 +373,10 @@ body {
   }
   .Desktop {
     visibility: hidden;
+  }
+}
+@media only screen and (max-width: 300px) {
+  .Credits{
+    display: none;
   }
 }
