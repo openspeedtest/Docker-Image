@@ -1,8 +1,8 @@
-#  **[OpenSpeedTest™️](https://openspeedtest.com?Run&ref=Github)** - Free and Open-Source HTML5 Network Performance Estimation Tool.
+#  **[Speed Test](https://openspeedtest.com?Run&ref=Github)** by OpenSpeedTest™ - Free & Open-Source HTML5 Network Performance Estimation Tool.
 
   
 
-Hi! I'm [Vishnu](https://vishnu.pro), the one who developed **[OpenSpeedTest™️](https://openspeedtest.com?Run&ref=Github)**. **[Speed Test](https://openspeedtest.com?Run&ref=Github)** by OpenSpeedTest™️ is a Free and Open-Source HTML5 Network Performance Estimation Tool Written in Vanilla Javascript and only uses built-in Web APIs like XMLHttpRequest (XHR), HTML, CSS, JS, & SVG. No Third-Party frameworks or libraries are Required. All we need is a static web server like Nginx. I started this project in 2011 and moved to OpenSpeedTest.com dedicated Project/Domain Name in 2013.
+Hi! I'm [Vishnu](https://vishnu.pro), the one who developed **[OpenSpeedTest™](https://openspeedtest.com?Run&ref=Github)**. **[Speed Test](https://openspeedtest.com?Run&ref=Github)** by OpenSpeedTest™ is a Free and Open-Source HTML5 Network Performance Estimation Tool Written in Vanilla Javascript and only uses built-in Web APIs like XMLHttpRequest (XHR), HTML, CSS, JS, & SVG. No Third-Party frameworks or libraries are Required. All we need is a static web server like Nginx. I started this project in 2011 and moved to OpenSpeedTest.com dedicated Project/Domain Name in 2013.
   
 
 [![Download OpenSpeedTest-Server V2.1](https://github.com/openspeedtest/v2-Test/raw/main/images/10G-S.gif)](https://go.openspeedtest.com/Server  "Download OpenSpeedTest-Server V2.1")
@@ -398,7 +398,7 @@ Many useful browser extensions are out there that we all know and love. But some
 **No client-side software or plugin is required. You can run a network speed test from any device with a web browser that is IE10 or new.**
 
 
-©Copyright 2013-2022 by OpenSpeedTest.com. All Rights Reserved.
+©Copyright 2013-2023 by OpenSpeedTest™ All Rights Reserved.
 
  
 Read full license terms @ http://go.openspeedtest.com/License
@@ -421,7 +421,7 @@ If you have any Questions, ideas or Comments Please Send it via -> https://go.op
 
 MIT License
 
-Copyright (c) 2022 OpenSpeedTest™️
+Copyright (c) 2013 - 2023 OpenSpeedTest™
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
