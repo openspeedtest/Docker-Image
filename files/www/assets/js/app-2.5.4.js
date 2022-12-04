@@ -1,15 +1,12 @@
-
 /*
      ©CopyRight 2013-2023 by OpenSpeedTest.COM. All Rights Reserved. 
      Official Website : https://OpenSpeedTest.COM | Email: support@openspeedtest.com
      Developed by : Vishnu | https://Vishnu.Pro | Email : me@vishnu.pro 
      Like this Project? Please Donate NOW & Keep us Alive -> https://go.openspeedtest.com/Donate
-
     Speed Test by OpenSpeedTest™️ is Free and Open-Source Software (FOSS) with MIT License.
     Read full license terms @ http://go.openspeedtest.com/License
-
     If you have any Questions, ideas or Comments Please Send it via -> https://go.openspeedtest.com/SendMessage
-*/           
+*/ 
 window.onload = function() {
   var appSVG = document.getElementById("OpenSpeedTest-UI");
   appSVG.parentNode.replaceChild(appSVG.contentDocument.documentElement, appSVG);
@@ -533,6 +530,12 @@ window.onload = function() {
     };
     return new Blob(genData(size), {type:"application/octet-stream"}, Callback(callback));
   };
+  openSpeedtestGet.prototype.addEvt = function(o, e, f) {
+    o.addEventListener(e, f);
+  };
+  openSpeedtestGet.prototype.remEvt = function(o, e, f) {
+    o.removeEventListener(e, f);
+  };
   var openSpeedtestEngine = function() {
     var Get = new openSpeedtestGet();
     var Show = new openSpeedtestShow();
@@ -585,6 +588,14 @@ window.onload = function() {
       }
     }
     setFinal();
+    var launch = true;
+    var init = true;
+    Get.addEvt(Show.settingsMob.el, "click", ShowIP);
+    Get.addEvt(Show.settingsDesk.el, "click", ShowIP);
+    Get.addEvt(Show.startButtonDesk.el, "click", runTasks);
+    Get.addEvt(Show.startButtonMob.el, "click", runTasks);
+    Get.addEvt(document, "keypress", hiEnter);
+    var addEvent = true;
     var getParams = function(url) {
       var params = {};
       var parser = document.createElement("a");
@@ -727,6 +738,25 @@ window.onload = function() {
         }
       }
     }
+    var OpenSpeedTestRun = parseInt(getCommand.run);
+    var OpenSpeedTestRunR = parseInt(getCommand.r);
+    var OpenSpeedTestStart;
+    if (enableRun) {
+      if (typeof getCommand.run === "string" || typeof getCommand.r === "string") {
+        if (OpenSpeedTestRun > 0) {
+          OpenSpeedTestStart = OpenSpeedTestRun;
+        } else if (OpenSpeedTestRunR > 0) {
+          OpenSpeedTestStart = OpenSpeedTestRunR;
+        } else {
+          OpenSpeedTestStart = 0;
+        }
+      }
+    }
+    if (OpenSpeedTestStart >= 0) {
+      if (launch) {
+        runTasks();
+      }
+    }
     var runTest = getCommand.test;
     var runTestT = getCommand.t;
     var SelectTest = false;
@@ -744,89 +774,108 @@ window.onload = function() {
           uploadSpeed = 0;
           dataUsedforul = 0;
           SelectTest = "Download";
-          OpenSpeedtest();
-          Show.userInterface();
+          if (launch) {
+            runTasks();
+          }
         } else if (runTestC === "upload" || runTestC === "u") {
           downloadSpeed = 0;
           dataUsedfordl = 0;
           SelectTest = "Upload";
           stop = 1;
-          OpenSpeedtest();
-          Show.userInterface();
+          if (launch) {
+            runTasks();
+          }
         } else if (runTestC === "ping" || runTestC === "p") {
-          OpenSpeedtest();
-          Show.userInterface();
           uploadSpeed = 0;
           dataUsedforul = 0;
           downloadSpeed = 0;
           dataUsedfordl = 0;
-          SelectTest = "SendR";
+          SelectTest = "Ping";
+          if (launch) {
+            runTasks();
+          }
         } else {
           SelectTest = false;
         }
       }
     }
-    var OpenSpeedTestRun = parseInt(getCommand.run);
-    var OpenSpeedTestRunR = parseInt(getCommand.r);
-    var OpenSpeedTestStart;
-    if (enableRun) {
-      if (typeof getCommand.run === "string" || typeof getCommand.r === "string") {
-        if (OpenSpeedTestRun > 0) {
-          OpenSpeedTestStart = OpenSpeedTestRun;
-        } else if (OpenSpeedTestRunR > 0) {
-          OpenSpeedTestStart = OpenSpeedTestRunR;
-        } else {
-          OpenSpeedTestStart = 0;
-        }
-      }
-    }
     var Startit = 0;
-    function countDownF() {
-      if (AutoTme >= 1) {
-        AutoTme = AutoTme - 1;
-        Show.LiveSpeed(AutoTme, "countDown");
-      } else {
-        if (AutoTme <= 0) {
-          clearInterval(autoTest);
-          if ((myname.toLowerCase() + com).length == 17) {
-            OpenSpeedtest();
+    function removeEvts() {
+      Get.remEvt(Show.settingsMob.el, "click", ShowIP);
+      Get.remEvt(Show.settingsDesk.el, "click", ShowIP);
+      Get.remEvt(Show.startButtonDesk.el, "click", runTasks);
+      Get.remEvt(Show.startButtonMob.el, "click", runTasks);
+      Get.remEvt(document, "keypress", hiEnter);
+    }
+    var requestIP = false;
+    function ShowIP() {
+      if (requestIP) {
+        Show.YourIP.el.textContent = "Please wait..";
+        ServerConnect(7);
+        requestIP = false;
+      }
+      Show.ip();
+    }
+    function runTasks() {
+      if (addEvent) {
+        removeEvts();
+        addEvent = false;
+      }
+      if (OpenSpeedTestStart >= 0) {
+        launch = false;
+        Show.userInterface();
+        init = false;
+        var AutoTme = Math.ceil(Math.abs(OpenSpeedTestStart));
+        Show.showStatus("Automatic Test Starts in ...");
+        var autoTest = setInterval(countDownF, 1000);
+      }
+      function countDownF() {
+        if (AutoTme >= 1) {
+          AutoTme = AutoTme - 1;
+          Show.LiveSpeed(AutoTme, "countDown");
+        } else {
+          if (AutoTme <= 0) {
+            clearInterval(autoTest);
+            launch = true;
+            OpenSpeedTestStart = undefined;
+            runTasks();
           }
         }
       }
-    }
-    if (typeof OpenSpeedTestStart !== "undefined" && SelectTest === false) {
-      Show.userInterface();
-      var AutoTme = Math.ceil(Math.abs(OpenSpeedTestStart));
-      Show.showStatus("Automatic Test Starts in ...");
-      var autoTest = setInterval(countDownF, 1000);
-    }
-    Show.settingsMob.el.addEventListener("click", ShowIP);
-    Show.settingsDesk.el.addEventListener("click", ShowIP);
-    function ShowIP() {
-      Show.ip();
+      if (openSpeedTestServerList === "fetch" && launch === true) {
+        launch = false;
+        Show.showStatus("Fetching Server Info..");
+        ServerConnect(6);
+      }
+      if (launch === true) {
+        if (SelectTest === "Ping") {
+          testRun();
+        } else if (SelectTest === "Download") {
+          testRun();
+        } else if (SelectTest === "Upload") {
+          testRun();
+        } else if (SelectTest === false) {
+          testRun();
+        }
+      }
     }
     var osttm = "\u2122";
     var myname = "OpenSpeedTest";
     var com = ".com";
     var ost = myname + osttm;
-    Show.startButtonDesk.el.addEventListener("click", testRun);
-    Show.startButtonMob.el.addEventListener("click", testRun);
-    document.addEventListener("keypress", hiEnter);
     function hiEnter(e) {
       if (e.key === "Enter") {
-        document.removeEventListener("keypress", hiEnter);
-        testRun();
+        runTasks();
       }
-    }
-    function removeHiEnter() {
-      document.removeEventListener("keypress", hiEnter);
     }
     var showResult = 0;
     if (openChannel === "web") {
       showResult = webRe;
+      requestIP = true;
     }
     if (openChannel === "widget") {
       showResult = widgetRe;
+      requestIP = true;
     }
     if (openChannel === "selfwidget") {
       showResult = widgetRe;
@@ -836,16 +885,16 @@ window.onload = function() {
     if (openChannel === "dev") {
     }
     function testRun() {
-      removeHiEnter();
+      if (init) {
+        Show.userInterface();
+        init = false;
+      }
       OpenSpeedtest();
-      Show.userInterface();
     }
     function OpenSpeedtest() {
       if (openChannel === "widget" || openChannel === "web") {
         ServerConnect(1);
       }
-      Show.startButtonDesk.el.removeEventListener("click", testRun);
-      Show.startButtonMob.el.removeEventListener("click", testRun);
       function readyToUP() {
         uploadTime = window.performance.now();
         upReq();
@@ -1190,6 +1239,7 @@ window.onload = function() {
     var finalJitter = [];
     var pingSendLength = openSpeedTestServerList.length;
     function readServerList() {
+      pingSendLength = openSpeedTestServerList.length;
       Status = "Ping";
       performance.clearResourceTimings();
       if (pingSendStatus < pingSendLength - 1) {
@@ -1211,7 +1261,11 @@ window.onload = function() {
           pingEstimate = statusPingFinal;
           jitterEstimate = statusJitterFinal;
           if (SelectTest) {
-            Status = SelectTest;
+            if (SelectTest == "Ping") {
+              Status = "SendR";
+            } else {
+              Status = SelectTest;
+            }
           } else {
             Status = "Download";
           }
@@ -1324,6 +1378,9 @@ window.onload = function() {
       if (auth == 5) {
         url = saveDataURL;
       }
+      if (auth == 7) {
+        url = get_IP;
+      }
       xhr.open("POST", url, true);
       xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhr.onreadystatechange = function() {
@@ -1340,6 +1397,14 @@ window.onload = function() {
               location.href = showResult + return_data;
             }, 1500);
           }
+          if (auth == 6) {
+            openSpeedTestServerList = JSON.parse(return_data);
+            launch = true;
+            runTasks();
+          }
+          if (auth == 7) {
+            Show.YourIP.el.textContent = return_data;
+          }
         }
       };
       if (auth == 2) {
@@ -1350,6 +1415,9 @@ window.onload = function() {
       }
       if (auth == 5) {
         logData = saveTestData;
+      }
+      if (auth == 6) {
+        logData = "r=s";
       }
       xhr.send(logData);
     };
