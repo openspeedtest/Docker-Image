@@ -138,16 +138,12 @@
 	</symbol>
 	<symbol id="downloadRc1" viewBox="0 0 66.93 13.85">
 		<g>
-			<text transform="translate(0 10.52)" class="rtext">DOWNLOAD
-				 
-			</text>
+			<text transform="translate(0 10.52)" class="rtext">DOWNLOAD</text>
 		</g>
 	</symbol>
 	<symbol id="uploadRc2" viewBox="0 0 46.73 13.85">
 		<g>
-			<text transform="translate(0 10.52)" class="rtext">UPLOAD
-				 
-			</text>
+			<text transform="translate(0 10.52)" class="rtext">UPLOAD</text>
 		</g>
 	</symbol>
 	<symbol id="pingSymbol" viewBox="0 0 14.28 14.28">
@@ -163,9 +159,7 @@
 		</g>
 	</symbol>
 	<symbol id="jitterRc3" viewBox="0 0 39.95 13.85">
-		<text class="rtext" transform="translate(0 9.64)">JITTER
-			 
-		</text>
+		<text class="rtext" transform="translate(0 9.64)">JITTER</text>
 	</symbol>
 	<symbol id="downResultC1" viewBox="0 0 53.35 39.8">
 		<text id="downResult" transform="translate(0 20.07)" class="rtextnum">---</text>
@@ -284,44 +278,26 @@
 		</symbol>
 		<a id="resultsData">
 			<svg class="Desktop" viewBox="0 0 586 346">
-				<title id="title1">Pure HTML5 Network Performance Estimation Tool. by OpenSpeedTest™️</title>
+				<title id="title1">HTML5 Network Performance Estimation Tool. by OpenSpeedTest™</title>
 				<g id="UI-Desk">
-					<use id="mainGaugebg-Desk" class="main-Gaugebg" xlink:href="#mainGaugebg" x="10.28" y="36.11" width="273.94"
-          height="245.39"></use>
-					<use id="mainGaugeBlue-Desk" class="main-GaugeBlue" xlink:href="#mainGaugeBlue" x="10.28" y="36.11"
-          width="273.94" height="245.39"></use>
-					<use id="mainGaugeWhite-Desk" class="main-GaugeWhite" xlink:href="#mainGaugeWhite" x="10.28" y="36.11"
-          width="273.94" height="245.39"></use>
+					<use id="mainGaugebg-Desk" class="main-Gaugebg" xlink:href="#mainGaugebg" x="10.28" y="36.11" width="273.94" height="245.39"></use>
+					<use id="mainGaugeBlue-Desk" class="main-GaugeBlue" xlink:href="#mainGaugeBlue" x="10.28" y="36.11" width="273.94" height="245.39"></use>
+					<use id="mainGaugeWhite-Desk" class="main-GaugeWhite" xlink:href="#mainGaugeWhite" x="10.28" y="36.11" width="273.94" height="245.39"></use>
 					<use xlink:href="#resultCard" class="Cards" x="307.4" y="31" width="278.1" height="85.5">
-						<title id="title1">The download speed is how fast you can pull data from the server to you in the form of
-            images, videos, text and more. Activities such as listening to music on Spotify, downloading large files or
-            streaming videos on Netflix all require you to download data.</title>
+						<title id="title1">The download speed is how fast you can pull data from the server to you in the form of images, videos, text and more. Activities such as listening to music on Spotify, downloading large files or streaming videos on Netflix all require you to download data.</title>
 					</use>
 					<use xlink:href="#resultCard" class="Cards" x="307.4" y="129.3" width="278.1" height="85.5">
-						<title id="title1">The upload speed is how fast you send data from you to others in the form of images,
-            videos, text and more. Activities such as uploading to YouTube or Sending email, playing live games like
-            PubG, Voice and Video calling a friend require fast upload speeds for you to send data to someone else’s
-            server.</title>
+						<title id="title1">The upload speed is how fast you send data from you to others in the form of images, videos, text and more. Activities such as uploading to YouTube or Sending email, playing live games like PubG, Voice and Video calling a friend require fast upload speeds for you to send data to someone else’s server.</title>
 					</use>
 					<use xlink:href="#resultCard" class="Cards" x="307.4" y="228.5" width="278.1" height="85.5">
-						<title id="title1">Ping "Round-trip time" is more or less well defined as the network delay from point A to B
-            and back. This is the sum of all encoding, queueing, processing, decoding, and propagation delays in both
-            directions. Essentially, it's the delay when A may be expecting an answer from B for a request that requires
-            very little processing. A fast ping means a more responsive connection, especially in applications where
-            timing is everything (like video games). Ping is measured in Milliseconds (ms).
-
-            Jitter is simply the difference in Ping "Round-trip time" . In other words, jitter is measuring time
-            difference in packet inter-arrival time. Jitter helps diagnose internet connection stability. The higher the
-            jitter value, the worse the stability of the connection.</title>
+						<title id="title1">Ping "Round-trip time" is more or less well defined as the network delay from point A to B and back. This is the sum of all encoding, queueing, processing, decoding, and propagation delays in both directions. Essentially, it's the delay when A may be expecting an answer from B for a request that requires very little processing. A fast ping means a more responsive connection, especially in applications where timing is everything (like video games). Ping is measured in Milliseconds (ms). Jitter is simply the difference in Ping "Round-trip time" . In other words, jitter is measuring time difference in packet inter-arrival time. Jitter helps diagnose internet connection stability. The higher the jitter value, the worse the stability of the connection.</title>
 					</use>
 					<use id="downSymbolDesk" xlink:href="#downSymbol" class="Desktop" x="133" y="99" width="32.21" height="41.62"></use>
 					<use id="upSymbolDesk" xlink:href="#upSymbol" class="Desktop" x="133" y="99" width="32.21" height="41.62"></use>
-					<use id="ConnectErrorDesk" xlink:href="#ConnectError" class="ConnectError" x="135" y="107.8" width="32.21"
-          height="41.62"></use>
+					<use id="ConnectErrorDesk" xlink:href="#ConnectError" class="ConnectError" x="135" y="107.8" width="32.21" height="41.62"></use>
 					<use class="oDo-Meter" xlink:href="#oDoMeter" x="10.28" y="36.11" width="273.94" height="245.39"></use>
 					<use xlink:href="#progressBar" x="1" y="295" width="293.53" height="18.38"></use>
-					<use id="progressStatus-Desk" class="intro-Progress" xlink:href="#introProgress" x="29" y="295" width="234"
-          height="21"></use>
+					<use id="progressStatus-Desk" class="intro-Progress" xlink:href="#introProgress" x="29" y="295" width="234" height="21"></use>
 					<use xlink:href="#downloadRc1" x="335.05" y="50.28" width="67" height="16">
 						<title id="title1">Download speed is measured in megabits per second (Mbps).</title>
 					</use>
@@ -359,8 +335,7 @@
 				</g>
 				<g id="intro-Desk">
 					<use id="logo-Desk" xlink:href="#logo" x="35" y="140" width="222.8" height="50.22"></use>
-					<use id="deskStart" class="deskStart" xlink:href="#mainGaugebg" x="10.28" y="36.11" width="273.94"
-          height="245.39"></use>
+					<use id="deskStart" class="deskStart" xlink:href="#mainGaugebg" x="10.28" y="36.11" width="273.94" height="245.39"></use>
 					<use xlink:href="#resultCard" class="Cards" x="307.4" y="31" width="278.1" height="85.5"></use>
 					<use xlink:href="#resultCard" class="Cards" x="307.4" y="228.5" width="278.1" height="85.5"></use>
 					<use xlink:href="#resultCard" class="Cards" x="307.4" y="129.3" width="278.1" height="85.5"></use>
@@ -400,8 +375,7 @@
 					</use>
 					<use id="nightmode"  class="darkmode" onclick="toggleSkin()" xlink:href="#dark" x="10" y="25" width="30" height="30"></use>
 					<use id="daymode"  class="darkmode" onclick="toggleSkin()" xlink:href="#light" x="10" y="25" width="30" height="30"></use>
-					<use id="startButtonDesk" class="startButton" xlink:href="#playButton" x="125" y="300.6" width="50.2"
-          height="50.2">
+					<use id="startButtonDesk" class="startButton" xlink:href="#playButton" x="125" y="300.6" width="50.2" height="50.2">
 						<title id="title1">Click here to Run a Speed Test! Or Press "Enter"</title>
 					</use>
 					<use id="settingsDesk" class="Startsettings" xlink:href="#settings" x="100" y="260" width="100" height="40">
@@ -411,44 +385,26 @@
 				</g>
 			</svg>
 			<svg class="Mobile" viewBox="0 0 295.9 363.3">
-				<title id="title1">Pure HTML5 Network Performance Estimation Tool. by OpenSpeedTest™️</title>
+				<title id="title1">HTML5 Network Performance Estimation Tool. by OpenSpeedTest™</title>
 				<g id="UI-Mob">
-					<use id="mainGaugebg-Mob" class="main-Gaugebg" xlink:href="#mainGaugebg" x="11.18" y="12" width="273.94"
-          height="245.39"></use>
-					<use id="mainGaugeBlue-Mob" class="main-GaugeBlue" xlink:href="#mainGaugeBlue" x="11.18" y="12" width="273.94"
-          height="245.39"></use>
-					<use id="mainGaugeWhite-Mob" class="main-GaugeWhite" xlink:href="#mainGaugeWhite" x="11.18" y="12"
-          width="273.94" height="245.39"></use>
+					<use id="mainGaugebg-Mob" class="main-Gaugebg" xlink:href="#mainGaugebg" x="11.18" y="12" width="273.94" height="245.39"></use>
+					<use id="mainGaugeBlue-Mob" class="main-GaugeBlue" xlink:href="#mainGaugeBlue" x="11.18" y="12" width="273.94" height="245.39"></use>
+					<use id="mainGaugeWhite-Mob" class="main-GaugeWhite" xlink:href="#mainGaugeWhite" x="11.18" y="12" width="273.94" height="245.39"></use>
 					<use xlink:href="#resultCardMob" class="Cards" x="1" y="297.52" width="88.1" height="65.8">
-						<title id="title1">The download speed is how fast you can pull data from the server to you in the form of
-            images, videos, text and more. Activities such as listening to music on Spotify, downloading large files or
-            streaming videos on Netflix all require you to download data.</title>
+						<title id="title1">The download speed is how fast you can pull data from the server to you in the form of images, videos, text and more. Activities such as listening to music on Spotify, downloading large files or streaming videos on Netflix all require you to download data.</title>
 					</use>
 					<use xlink:href="#resultCardMob" class="Cards" x="104.1" y="297.52" width="88.1" height="65.8">
-						<title id="title1">The upload speed is how fast you send data from you to others in the form of images,
-            videos, text and more. Activities such as uploading to YouTube or Sending email, playing live games like
-            PubG, Voice and Video calling a friend require fast upload speeds for you to send data to someone else’s
-            server.</title>
+						<title id="title1">The upload speed is how fast you send data from you to others in the form of images, videos, text and more. Activities such as uploading to YouTube or Sending email, playing live games like PubG, Voice and Video calling a friend require fast upload speeds for you to send data to someone else’s server.</title>
 					</use>
 					<use xlink:href="#resultCardMob" class="Cards" x="207.1" y="297.52" width="88.1" height="65.8">
-						<title id="title1">Ping "Round-trip time" is more or less well defined as the network delay from point A to B
-            and back. This is the sum of all encoding, queueing, processing, decoding, and propagation delays in both
-            directions. Essentially, it's the delay when A may be expecting an answer from B for a request that requires
-            very little processing. A fast ping means a more responsive connection, especially in applications where
-            timing is everything (like video games). Ping is measured in Milliseconds (ms).
-
-            Jitter is simply the difference in Ping "Round-trip time" . In other words, jitter is measuring time
-            difference in packet inter-arrival time. Jitter helps diagnose internet connection stability. The higher the
-            jitter value, the worse the stability of the connection.</title>
+						<title id="title1">Ping "Round-trip time" is more or less well defined as the network delay from point A to B and back. This is the sum of all encoding, queueing, processing, decoding, and propagation delays in both directions. Essentially, it's the delay when A may be expecting an answer from B for a request that requires very little processing. A fast ping means a more responsive connection, especially in applications where timing is everything (like video games). Ping is measured in Milliseconds (ms). Jitter is simply the difference in Ping "Round-trip time" . In other words, jitter is measuring time difference in packet inter-arrival time. Jitter helps diagnose internet connection stability. The higher the jitter value, the worse the stability of the connection.</title>
 					</use>
 					<use id="upSymbolMob" xlink:href="#upSymbol" class="Mobile" x="134" y="73" width="32.21" height="41.62"></use>
 					<use id="downSymbolMob" xlink:href="#downSymbol" class="Mobile" x="134" y="73" width="32.21" height="41.62"></use>
-					<use id="ConnectErrorMob" xlink:href="#ConnectError" class="ConnectError" x="135.9" y="74.02" width="32.21"
-          height="41.62"></use>
+					<use id="ConnectErrorMob" xlink:href="#ConnectError" class="ConnectError" x="135.9" y="74.02" width="32.21" height="41.62"></use>
 					<use class="oDo-Meter" xlink:href="#oDoMeter" x="11.18" y="12" width="273.94" height="245.39"></use>
 					<use xlink:href="#progressBar" x="1.9" y="272.08" width="293.53" height="18.38"></use>
-					<use id="progressStatus-Mob" class="intro-Progress" xlink:href="#introProgress" x="29" y="272" width="234.5"
-          height="21.5"></use>
+					<use id="progressStatus-Mob" class="intro-Progress" xlink:href="#introProgress" x="29" y="272" width="234.5" height="21.5"></use>
 					<use xlink:href="#downloadRc1" x="22.36" y="301.63" width="60" height="15">
 						<title id="title1">Download speed is measured in megabits per second (Mbps).</title>
 					</use>
@@ -481,10 +437,8 @@
 					<use id="nightmode-Mob"  class="darkmode" onclick="toggleSkin()" xlink:href="#dark" x="10" y="25" width="30" height="30"></use>
 					<use id="daymode-Mob"  class="darkmode" onclick="toggleSkin()" xlink:href="#light" x="10" y="25" width="30" height="30"></use>
 					<use id="logo-Desk" xlink:href="#logo" x="38" y="110" width="218.8" height="50.22"></use>
-					<use id="deskStartMob" class="deskStart" xlink:href="#mainGaugebg" x="11.18" y="12" width="273.94"
-          height="245.39"></use>
-					<use id="startButtonMob" class="startButton" xlink:href="#playButton" x="125" y="280" width="50.2"
-          height="50.2">
+					<use id="deskStartMob" class="deskStart" xlink:href="#mainGaugebg" x="11.18" y="12" width="273.94" height="245.39"></use>
+					<use id="startButtonMob" class="startButton" xlink:href="#playButton" x="125" y="280" width="50.2" height="50.2">
 						<title id="title1">Click here to run a speed!</title>
 					</use>
 					<use id="settingsMob" class="Startsettings" xlink:href="#settings" x="100" y="240" width="100" height="40">
