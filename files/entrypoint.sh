@@ -12,4 +12,4 @@ if [[ $? -ne 0 ]]; then
   sed -i '/listen 300/d' ${CONFIG}
 fi
 
-nginx -g 'daemon off;'
+exec nginx -g 'daemon off;'
