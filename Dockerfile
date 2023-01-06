@@ -35,4 +35,6 @@ USER 101
 
 EXPOSE 3000 3001
 
+STOPSIGNAL SIGQUIT
+
 CMD ["/entrypoint.sh"]
