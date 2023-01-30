@@ -1,4 +1,4 @@
-# Official Docker Image https://hub.docker.com/r/openspeedtest/latest
+# OpenSpeedTest™ Docker Image https://hub.docker.com/r/openspeedtest/latest
 
 [![OpenSpeedTest Docker Image](https://github.com/openspeedtest/v2-Test/raw/main/images/10G-S.gif)](https://hub.docker.com/r/openspeedtest/latest  "OpenSpeedTest Docker Image")
 
