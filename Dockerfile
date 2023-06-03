@@ -4,14 +4,10 @@ FROM nginxinc/nginx-unprivileged:stable-alpine
 
 LABEL maintainer "OpenSpeedTest.com <support@OpenSpeedTest.com>"
 
-ENV ENABLE_SSL=false
-ENV DOMAIN_NAME=false
-ENV USER_EMAIL=false
 ENV CONFIG=/etc/nginx/conf.d/OpenSpeedTest-Server.conf
 
 COPY /files/OpenSpeedTest-Server.conf ${CONFIG}
 COPY /files/entrypoint.sh /entrypoint.sh
-COPY /files/renew.sh /renew.sh
 RUN rm /etc/nginx/nginx.conf
 COPY /files/nginx.conf /etc/nginx/
 COPY /files/www/ /usr/share/nginx/html/
@@ -21,7 +17,7 @@ COPY /files/nginx.key /etc/ssl/
 
 
 USER root
-VOLUME /var/log/letsencrypt
+
 RUN rm -rf /etc/nginx/conf.d/default.conf \
 	&& chown -R nginx /usr/share/nginx/html/ \
 	&& chmod 755 /usr/share/nginx/html/downloading \
@@ -30,37 +26,10 @@ RUN rm -rf /etc/nginx/conf.d/default.conf \
 	&& chmod 400 ${CONFIG} \
 	&& chown nginx /etc/nginx/nginx.conf \
 	&& chmod 400 /etc/nginx/nginx.conf \
-	&& chmod +x /entrypoint.sh \
-	&& chmod +x /renew.sh
+	&& chmod +x /entrypoint.sh
 
-
-
-RUN mkdir -p /etc/letsencrypt && \
-    chown -R nginx /etc/letsencrypt && \
-    chmod 775 /etc/letsencrypt
-
-RUN mkdir -p /var/lib/letsencrypt && \
-    chown -R nginx /var/lib/letsencrypt && \
-    chmod 775 /var/lib/letsencrypt
-
-RUN mkdir -p /var/log/letsencrypt && \
-    chown -R nginx /var/log/letsencrypt && \
-    chmod 775 /var/log/letsencrypt
-
-RUN mkdir -p /usr/share/nginx/html/.well-known/acme-challenge && \
-    chown -R nginx /usr/share/nginx/html/.well-known/acme-challenge && \
-    chmod 775 /usr/share/nginx/html/.well-known/acme-challenge
- 
 RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/* 
 RUN update-ca-certificates
-RUN apk add --no-cache certbot certbot-nginx
-RUN apk update && apk add --no-cache dcron libcap
-
-RUN chown nginx:nginx /usr/sbin/crond \
-    && setcap cap_setgid=ep /usr/sbin/crond
-
-RUN touch /etc/crontabs/nginx
-RUN chown -R nginx:nginx /etc/crontabs/nginx
 
 USER 101
 
@@ -69,4 +38,3 @@ EXPOSE 3000 3001
 STOPSIGNAL SIGQUIT
 
 CMD ["/entrypoint.sh"]
-
