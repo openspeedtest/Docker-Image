@@ -1,5 +1,7 @@
 # Beta
-````sudo docker run -e ENABLE_SSL=True -e DOMAIN_NAME=example.com -e USER_EMAIL=you@example.com --restart=unless-stopped --name openspeedtest -d -p 80:3000 -p 443:3001 openspeedtest/beta:v1````
+````
+sudo docker run -e ENABLE_SSL=True -e DOMAIN_NAME=example.com -e USER_EMAIL=you@example.com -e VERIFY_OWNERSHIP=TextFILEContent --restart=unless-stopped --name openspeedtest -d -p 80:3000 -p 443:3001 openspeedtest/beta:v1.1
+````
 
 
 #  **[SpeedTest by OpenSpeedTest™](https://openspeedtest.com?Run&ref=Github)** - Free & Open-Source HTML5 Network Performance Estimation Tool.
