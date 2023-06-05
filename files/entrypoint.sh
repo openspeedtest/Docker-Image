@@ -12,6 +12,17 @@ if [[ $? -ne 0 ]]; then
   sed -i '/listen 300/d' ${CONFIG}
 fi
 
+Verify_TXT_path="/usr/share/nginx/html/Verify.txt"
+
+if [ "$VERIFY_OWNERSHIP" ]; then
+      if [ -f "$Verify_TXT_path" ]; then
+      echo "Verify.txt Found!"
+      else
+      echo ${VERIFY_OWNERSHIP} > /usr/share/nginx/html/Verify.txt
+      echo "Verify.txt Created!"
+      fi
+fi
+
 if [ "$DOMAIN_NAME" ]; then
 sed -i "/\bYOURDOMAIN\b/c\ server_name _ localhost ${DOMAIN_NAME};" "${CONFIG}"
 fi
