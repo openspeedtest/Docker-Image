@@ -42,7 +42,9 @@ certbot certonly -n --webroot --webroot-path /usr/share/nginx/html --no-redirect
       sed -i "/\bssl_certificate_key\b/c\ssl_certificate_key \/var\/log\/letsencrypt\/live\/${DOMAIN_NAME}\/privkey.pem;" "${CONFIG}"
       nginx -s reload
       echo "Let's Encrypt certificate obtained successfully."
-      echo "039 3 * * * /renew.sh > /proc/1/fd/1 2>&1" > /etc/crontabs/nginx
+      random_minute=$(shuf -i 0-59 -n 1)
+      random_hour=$(shuf -i 0-23 -n 1)
+      echo "$random_minute $random_hour * * * /renew.sh > /proc/1/fd/1 2>&1" > /etc/crontabs/nginx
       else
       echo "letsencrypt Certificates Not Found!"
       fi
