@@ -23,6 +23,56 @@ if [ "$VERIFY_OWNERSHIP" ]; then
       fi
 fi
 
+if [ "$ALLOW_ONLY" ]; then
+
+allow_only=${ALLOW_ONLY}
+
+IFS=';' domains=$(echo "$allow_only" | tr ';' '\n')
+
+map_config="map \$http_origin \$allowed_origin {
+    default 0;
+"
+while IFS= read -r line; do
+    escaped_domain=$(echo "$line" | sed 's/\./\\./g')
+    map_config="$map_config    \"~^https?://(www\.)?($escaped_domain)\$\" 1;
+"
+done < <(printf '%s\n' "$domains")
+
+map_config="$map_config}"
+
+nginx_conf_path="/etc/nginx/nginx.conf"
+pattern="map \$http_origin \$allowed_origin {"
+nginx_block="if (\$allowed_origin = 0) { return 403; }"
+
+if grep -q "$pattern" "$nginx_conf_path"; then
+    echo "Map config found! nginx.conf not modified"
+else
+    while IFS= read -r line; do
+sed -i '/^\s*http\s*{/ {
+    :a;
+    N;
+    /\s*}\s*$/!ba;
+    s|\(}\)|'"$line"'\n\1|
+}' "$nginx_conf_path"
+    done < <(printf '%s\n' "$map_config")
+        if [ $? -eq 0 ]; then
+    echo "Map config added to nginx.conf"
+    sed -i '/location \/ {/ i\
+'"$nginx_block"'
+' "${CONFIG}"
+if [ $? -eq 0 ]; then
+ echo "Added Block to nginx.conf"
+else
+ echo "Failed to Add Block to nginx.conf"
+fi
+        else
+    echo "Failed to add map config to nginx.conf"
+fi
+fi
+
+fi
+
+
 if [ "$DOMAIN_NAME" ]; then
 sed -i "/\bYOURDOMAIN\b/c\ server_name _ localhost ${DOMAIN_NAME};" "${CONFIG}"
 fi
