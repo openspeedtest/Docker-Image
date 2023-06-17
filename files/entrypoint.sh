@@ -57,9 +57,15 @@ sed -i '/^\s*http\s*{/ {
     done < <(printf '%s\n' "$map_config")
         if [ $? -eq 0 ]; then
     echo "Map config added to nginx.conf"
-    sed -i '/location \/ {/ i\
+    sed -i '/location \/ {/ {
+        a\
 '"$nginx_block"'
-' "${CONFIG}"
+    }' "$CONFIG"
+
+    sed -i '/location ~\* \^.+\\.(?:css|cur|js|jpe?g|gif|htc|ico|png|html|xml|otf|ttf|eot|woff|woff2|svg)\$ {/ {
+        a\
+'"$nginx_block"'
+    }' "$CONFIG"
 if [ $? -eq 0 ]; then
  echo "Added Block to nginx.conf"
 else
