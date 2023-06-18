@@ -92,7 +92,7 @@ fi
 
 nginx -g 'daemon off;' & sleep 5
 
-if [ "$LETSENCRYPT" = True ] && [ "$DOMAIN_NAME" ] && [ "$USER_EMAIL" ]; then
+if [ "$ENABLE_LETSENCRYPT" = True ] && [ "$DOMAIN_NAME" ] && [ "$USER_EMAIL" ]; then
 
 fullchain_path="/var/log/letsencrypt/live/${DOMAIN_NAME}/fullchain.pem"
 
