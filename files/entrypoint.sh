@@ -42,7 +42,7 @@ map_config="$map_config}"
 
 nginx_conf_path="/etc/nginx/nginx.conf"
 pattern="map \$http_origin \$allowed_origin {"
-nginx_block="if (\$allowed_origin = 0) { return 403; }"
+nginx_block="if (\$allowed_origin = 0) { return 444; }"
 
 if grep -q "$pattern" "$nginx_conf_path"; then
     echo "Map config found! nginx.conf not modified"
@@ -57,20 +57,27 @@ sed -i '/^\s*http\s*{/ {
     done < <(printf '%s\n' "$map_config")
         if [ $? -eq 0 ]; then
     echo "Map config added to nginx.conf"
-    sed -i '/location \/ {/ {
-        a\
-'"$nginx_block"'
-    }' "$CONFIG"
+            if grep -q "$nginx_block" "$CONFIG"; then
+            echo "Block Config found! OpenSpeedTest-Server.conf not modified"
+            else
+            echo "Adding Block Config to OpenSpeedTest-Server.conf"
+                    sed -i '/location \/ {/ {
+                        a\
+                '"$nginx_block"'
+                    }' "$CONFIG"
 
-    sed -i '/location ~\* \^.+\\.(?:css|cur|js|jpe?g|gif|htc|ico|png|html|xml|otf|ttf|eot|woff|woff2|svg)\$ {/ {
-        a\
-'"$nginx_block"'
-    }' "$CONFIG"
-if [ $? -eq 0 ]; then
- echo "Added Block to nginx.conf"
-else
- echo "Failed to Add Block to nginx.conf"
-fi
+                    sed -i '/location ~\* \^.+\\.(?:css|cur|js|jpe?g|gif|htc|ico|png|html|xml|otf|ttf|eot|woff|woff2|svg)\$ {/ {
+                        a\
+                '"$nginx_block"'
+                    }' "$CONFIG"
+                    if [ $? -eq 0 ]; then
+                    echo "Added Block to OpenSpeedTest-Server.conf"
+                    else
+                    echo "Failed to Add Block to OpenSpeedTest-Server.conf"
+                    fi
+            fi
+    
+
         else
     echo "Failed to add map config to nginx.conf"
 fi
