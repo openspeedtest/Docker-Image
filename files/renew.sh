@@ -3,7 +3,7 @@
 
 fullchain_path="/var/log/letsencrypt/live/${DOMAIN_NAME}/fullchain.pem"
 
-if [ "$ENABLE_SSL" = True ] && [ "$DOMAIN_NAME" ] && [ "$USER_EMAIL" ]; then
+if [ "$LETSENCRYPT" = True ] && [ "$DOMAIN_NAME" ] && [ "$USER_EMAIL" ]; then
 
 certbot renew --force-renewal
     if [ $? -eq 0 ]; then
