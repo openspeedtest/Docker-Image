@@ -4,12 +4,6 @@ FROM nginxinc/nginx-unprivileged:stable-alpine
 
 LABEL maintainer "OpenSpeedTest.com <support@OpenSpeedTest.com>"
 
-<<<<<<< HEAD
-ENV ENABLE_LETSENCRYPT=false
-ENV DOMAIN_NAME=false
-ENV USER_EMAIL=false
-=======
->>>>>>> main
 ENV CONFIG=/etc/nginx/conf.d/OpenSpeedTest-Server.conf
 
 COPY /files/OpenSpeedTest-Server.conf ${CONFIG}
