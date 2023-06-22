@@ -12,7 +12,6 @@ if [[ $? -ne 0 ]]; then
   sed -i '/listen 300/d' ${CONFIG}
 fi
 
-<<<<<<< HEAD
 Verify_TXT_path="/usr/share/nginx/html/Verify.txt"
 
 if [ "$VERIFY_OWNERSHIP" ]; then
@@ -120,6 +119,3 @@ fi
 crond -b -l 5
 
 tail -f /dev/null
-=======
-exec nginx -g 'daemon off;'
->>>>>>> main
