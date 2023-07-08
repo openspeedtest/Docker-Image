@@ -15,7 +15,6 @@ fi
 
 if [ "$CHANGE_CONTAINER_PORTS" ]; then
     if [ "$HTTP_PORT" ]; then
-        echo ${HTTP_PORT}
         sed -i "s/3000/${HTTP_PORT}/g" ${CONFIG}
         if [ $? -eq 0 ]; then
         echo "Changed HTTP container port to " ${HTTP_PORT}
@@ -26,7 +25,6 @@ if [ "$CHANGE_CONTAINER_PORTS" ]; then
     fi
 
     if [ "$HTTPS_PORT" ]; then
-        echo ${HTTPS_PORT}
         sed -i "s/3001/${HTTPS_PORT}/g" ${CONFIG}
         if [ $? -eq 0 ]; then
         echo "Changed HTTPS container port to " ${HTTPS_PORT}
