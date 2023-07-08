@@ -13,7 +13,7 @@ if [[ $? -ne 0 ]]; then
 fi
 
 
-if [ "$CHANGE_CONTAINER_PORTS" ]; then
+if [ "$CHANGE_CONTAINER_PORTS" = True ]; then
     if [ "$HTTP_PORT" ]; then
         sed -i "s/3000/${HTTP_PORT}/g" ${CONFIG}
         if [ $? -eq 0 ]; then
