@@ -12,6 +12,7 @@ ENV CONFIG=/etc/nginx/conf.d/OpenSpeedTest-Server.conf
 ENV CHANGE_CONTAINER_PORTS=false
 ENV HTTP_PORT=3000
 ENV HTTPS_PORT=3001
+ENV SET_USER=101
 
 COPY /files/OpenSpeedTest-Server.conf ${CONFIG}
 COPY /files/entrypoint.sh /entrypoint.sh
@@ -66,7 +67,7 @@ RUN chown nginx:nginx /usr/sbin/crond \
 RUN touch /etc/crontabs/nginx
 RUN chown -R nginx:nginx /etc/crontabs/nginx
 
-USER 101
+USER ${SET_USER}
 
 EXPOSE ${HTTP_PORT} ${HTTPS_PORT}
 
