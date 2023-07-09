@@ -12,6 +12,30 @@ if [[ $? -ne 0 ]]; then
   sed -i '/listen 300/d' ${CONFIG}
 fi
 
+
+if [ "$CHANGE_CONTAINER_PORTS" = True ]; then
+    if [ "$HTTP_PORT" ]; then
+        sed -i "s/3000/${HTTP_PORT}/g" ${CONFIG}
+        if [ $? -eq 0 ]; then
+        echo "Changed HTTP container port to " ${HTTP_PORT}
+        else
+        echo "Failed to change HTTP container port to " ${HTTP_PORT}
+        fi        
+         
+    fi
+
+    if [ "$HTTPS_PORT" ]; then
+        sed -i "s/3001/${HTTPS_PORT}/g" ${CONFIG}
+        if [ $? -eq 0 ]; then
+        echo "Changed HTTPS container port to " ${HTTPS_PORT}
+        else
+        echo "Failed to change HTTPS container port to " ${HTTPS_PORT}
+        fi    
+
+    fi
+fi
+
+
 Verify_TXT_path="/usr/share/nginx/html/Verify.txt"
 
 if [ "$VERIFY_OWNERSHIP" ]; then
