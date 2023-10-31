@@ -48,7 +48,7 @@ if [ "$VERIFY_OWNERSHIP" ]; then
 fi
 
 if [ "$SET_SERVER_NAME" ]; then
-      SERVER_NAME='<h1 style="display: inline;color: #7c888d;">'${SET_SERVER_NAME}'</h1>'
+      SERVER_NAME='<h1 style="display: inline;color: #7c888d; font-size: 22px;font-family: Roboto-Medium, Roboto;font-weight: 500;">'${SET_SERVER_NAME}'</h1>'
       sed -i -e '/<body>/a\'$'\n'"$SERVER_NAME" ${INDEX_HTML}
 fi
 
