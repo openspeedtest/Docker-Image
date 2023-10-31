@@ -8,6 +8,7 @@ ENV ENABLE_LETSENCRYPT=false
 ENV DOMAIN_NAME=false
 ENV USER_EMAIL=false
 ENV CONFIG=/etc/nginx/conf.d/OpenSpeedTest-Server.conf
+ENV INDEX_HTML=/usr/share/nginx/html/index.html
 
 ENV CHANGE_CONTAINER_PORTS=false
 ENV HTTP_PORT=3000

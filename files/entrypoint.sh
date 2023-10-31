@@ -47,6 +47,11 @@ if [ "$VERIFY_OWNERSHIP" ]; then
       fi
 fi
 
+if [ "$SET_SERVER_NAME" ]; then
+      SERVER_NAME='<h1 style="display: inline;color: #7c888d;">'${SET_SERVER_NAME}'</h1>'
+      sed -i -e '/<body>/a\'$'\n'"$SERVER_NAME" ${INDEX_HTML}
+fi
+
 if [ "$ALLOW_ONLY" ]; then
 
 allow_only=${ALLOW_ONLY}
