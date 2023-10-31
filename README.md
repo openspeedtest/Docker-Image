@@ -138,3 +138,6 @@ To enable port changes, set the `CHANGE_CONTAINER_PORTS` environment variable to
 
 `ALLOW_ONLY=domain1.com;domain2.com;domain3.com`
 
+- `SET_SERVER_NAME` Display the server name on the UI.
+  
+`SET_SERVER_NAME=HOME-NAS` 
