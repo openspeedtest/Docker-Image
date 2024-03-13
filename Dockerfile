@@ -61,6 +61,7 @@ RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 RUN update-ca-certificates
 RUN apk add --no-cache certbot certbot-nginx
 RUN apk update && apk add --no-cache dcron libcap
+RUN apk add --no-cache bash
 
 RUN chown nginx:nginx /usr/sbin/crond \
     && setcap cap_setgid=ep /usr/sbin/crond
