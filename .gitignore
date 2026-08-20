@@ -1,1 +1,4 @@
 .DS_Store
+
+# Download file is generated at container startup via entrypoint.sh
+files/www/downloading

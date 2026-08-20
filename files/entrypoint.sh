@@ -1,5 +1,15 @@
 #!/bin/sh
 
+DL_FILE="/usr/share/nginx/html/downloading"
+DL_SIZE="${FILE_SIZE:-31457280}"
+if [ "$(stat -c%s "$DL_FILE" 2>/dev/null || echo 0)" != "$DL_SIZE" ]; then
+  if head -c "$DL_SIZE" /dev/urandom > "$DL_FILE" 2>/dev/null; then
+    echo "Generated $DL_SIZE bytes of random test data at $DL_FILE"
+  else
+    echo "Warning: could not generate $DL_FILE (read-only mount?); serving without it."
+  fi
+fi
+
 ip a | egrep -q 'inet6 '
 if [[ $? -ne 0 ]]; then
   # IPv6 not enabled
@@ -121,6 +131,15 @@ if [ "$DOMAIN_NAME" ]; then
 sed -i "/\bYOURDOMAIN\b/c\ server_name _ localhost ${DOMAIN_NAME};" "${CONFIG}"
 fi
 
+# Check if Let's Encrypt is requested but certbot not installed (early check)
+if [ "$ENABLE_LETSENCRYPT" = True ] && [ "$DOMAIN_NAME" ] && [ "$USER_EMAIL" ]; then
+  if ! command -v certbot >/dev/null 2>&1; then
+    echo "Error: Let's Encrypt requested but certbot not installed."
+    echo "Rebuild image with certbot support (default), or use image tagged with certbot."
+    exit 1
+  fi
+fi
+
 nginx -g 'daemon off;' & sleep 5
 
 if [ "$ENABLE_LETSENCRYPT" = True ] && [ "$DOMAIN_NAME" ] && [ "$USER_EMAIL" ]; then
@@ -147,6 +166,8 @@ certbot certonly -n --webroot --webroot-path /usr/share/nginx/html --no-redirect
   fi
 fi
 
-crond -b -l 5
+if command -v crond >/dev/null 2>&1; then
+    crond -f -l 5 &
+fi
 
 tail -f /dev/null
