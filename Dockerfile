@@ -2,7 +2,15 @@
 # Dockerfile for https://hub.docker.com/r/openspeedtest/latest
 FROM nginxinc/nginx-unprivileged:stable-alpine
 
-LABEL maintainer="OpenSpeedTest.com <support@OpenSpeedTest.com>"
+LABEL maintainer="OpenSpeedTest.com <support@OpenSpeedTest.com>" \
+      org.opencontainers.image.description="OpenSpeedTest Docker Image" \
+      org.opencontainers.image.licenses="MIT License" \
+      org.opencontainers.image.source="https://github.com/openspeedtest/Docker-Image" \
+      org.opencontainers.image.title="OpenSpeedTest Docker Image" \
+      org.opencontainers.image.url="https://github.com/openspeedtest/Docker-Image" \
+      org.opencontainers.image.version="" \
+      org.opencontainers.image.created="" \
+      org.opencontainers.image.revision=""
 
 ENV ENABLE_LETSENCRYPT=false
 ENV DOMAIN_NAME=false
