@@ -5,6 +5,11 @@ fullchain_path="/var/log/letsencrypt/live/${DOMAIN_NAME}/fullchain.pem"
 
 if [ "$ENABLE_LETSENCRYPT" = True ] && [ "$DOMAIN_NAME" ] && [ "$USER_EMAIL" ]; then
 
+if ! command -v certbot >/dev/null 2>&1; then
+  echo "Error: certbot not installed. Skipping renewal."
+  exit 0
+fi
+
 certbot certonly -n --webroot --webroot-path /usr/share/nginx/html --no-redirect --agree-tos --email "$USER_EMAIL" -d "$DOMAIN_NAME" --config-dir /var/log/letsencrypt/ --work-dir /var/log/letsencrypt/work --logs-dir /var/log/letsencrypt/log
     if [ $? -eq 0 ]; then
         echo "certbot certonly -n... Executed."

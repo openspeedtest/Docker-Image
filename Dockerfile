@@ -15,6 +15,10 @@ ENV HTTP_PORT=3000
 ENV HTTPS_PORT=3001
 ENV SET_USER=101
 
+ARG FILE_SIZE=31457280
+ENV FILE_SIZE=${FILE_SIZE}
+ARG WITHOUT_LETSENCRYPT=false
+
 COPY /files/OpenSpeedTest-Server.conf ${CONFIG}
 COPY /files/entrypoint.sh /entrypoint.sh
 COPY /files/renew.sh /renew.sh
@@ -28,15 +32,16 @@ COPY /files/nginx.key /etc/ssl/
 
 USER root
 VOLUME /var/log/letsencrypt
+
+
 RUN rm -rf /etc/nginx/conf.d/default.conf \
-	&& chown -R nginx /usr/share/nginx/html/ \
-	&& chmod 755 /usr/share/nginx/html/downloading \
-	&& chmod 755 /usr/share/nginx/html/upload \
-	&& chown nginx ${CONFIG} \
-	&& chmod 400 ${CONFIG} \
-	&& chown nginx /etc/nginx/nginx.conf \
-	&& chmod 400 /etc/nginx/nginx.conf \
-	&& chmod +x /entrypoint.sh \
+    && chown -R nginx /usr/share/nginx/html/ \
+    && chmod 744 /usr/share/nginx/html/upload \
+    && chown nginx ${CONFIG} \
+    && chmod 400 ${CONFIG} \
+    && chown nginx /etc/nginx/nginx.conf \
+    && chmod 400 /etc/nginx/nginx.conf \
+    && chmod +x /entrypoint.sh \
 	&& chmod +x /renew.sh
 
 
@@ -56,17 +61,17 @@ RUN mkdir -p /var/log/letsencrypt && \
 RUN mkdir -p /usr/share/nginx/html/.well-known/acme-challenge && \
     chown -R nginx /usr/share/nginx/html/.well-known/acme-challenge && \
     chmod 775 /usr/share/nginx/html/.well-known/acme-challenge
- 
+
 RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/* 
 RUN update-ca-certificates
-RUN apk add --no-cache certbot certbot-nginx
-RUN apk update && apk add --no-cache dcron libcap
-
-RUN chown nginx:nginx /usr/sbin/crond \
-    && setcap cap_setgid=ep /usr/sbin/crond
-
-RUN touch /etc/crontabs/nginx
-RUN chown -R nginx:nginx /etc/crontabs/nginx
+RUN if [ "${WITHOUT_LETSENCRYPT}" != "true" ]; then \
+        apk add --no-cache certbot certbot-nginx && \
+        apk update && apk add --no-cache dcron libcap && \
+        chown nginx:nginx /usr/sbin/crond && \
+        setcap cap_setgid=ep /usr/sbin/crond && \
+        touch /etc/crontabs/nginx && \
+        chown -R nginx:nginx /etc/crontabs/nginx; \
+    fi
 
 USER ${SET_USER}
 
