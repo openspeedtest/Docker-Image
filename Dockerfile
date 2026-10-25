@@ -36,6 +36,7 @@ RUN rm -rf /etc/nginx/conf.d/default.conf \
 	&& chmod 400 ${CONFIG} \
 	&& chown nginx /etc/nginx/nginx.conf \
 	&& chmod 400 /etc/nginx/nginx.conf \
+	&& sed -i 's/\r$//' /entrypoint.sh /renew.sh \
 	&& chmod +x /entrypoint.sh \
 	&& chmod +x /renew.sh
 
