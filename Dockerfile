@@ -71,8 +71,6 @@ RUN chown -R nginx:nginx /etc/crontabs/nginx
 
 USER ${SET_USER}
 
-EXPOSE ${HTTP_PORT} ${HTTPS_PORT}
-
 STOPSIGNAL SIGQUIT
 
 CMD ["/entrypoint.sh"]
