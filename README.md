@@ -47,14 +47,16 @@ If you need to run this image on a different port for `HTTPS`, Eg: change to `44
 ### Setup Free LetsEncrypt SSL with Automatic Certificate Renewal
 ***Requirements***
 - PUBLIC IPV4 and/or IPV6 address.
-- A domain name that resolves to speed test server's IP address.
+- A domain name/s that resolves to speed test server's IP address/es.
 - Email ID
 
-The following command will generate a Let's Encrypt certificate for your domain name and configure a cron job to automatically renew the certificate.
+The following command will generate a Let's Encrypt certificate for your domain name/s and configure a cron job to automatically renew the certificate. 
 
 ````
 docker run -e ENABLE_LETSENCRYPT=True -e DOMAIN_NAME=speedtest.yourdomain.com -e USER_EMAIL=you@yourdomain.pro --restart=unless-stopped --name openspeedtest -d -p 80:3000 -p 443:3001 openspeedtest/latest
 ````
+DOMAIN_NAME may be a single value, Eg: 'speedtest.yourdomain.com' or a comma separated list, Eg: 'speedtest.yourdomain.com,ipv4.speedtest.yourdomain.com,ipv6.speedtest.yourdomain.com'
+
 #### Or use docker-compose.yml 
 ````
 version: '3.3'
