@@ -1,6 +1,6 @@
 # By OpenSpeedTest
 # Dockerfile for https://hub.docker.com/r/openspeedtest/latest
-FROM nginxinc/nginx-unprivileged:stable-alpine
+FROM docker.io/nginx/nginx-unprivileged:stable-alpine
 
 LABEL maintainer="OpenSpeedTest.com <support@OpenSpeedTest.com>"
 
