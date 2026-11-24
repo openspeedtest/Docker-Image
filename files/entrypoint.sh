@@ -124,10 +124,8 @@ fi
 nginx -g 'daemon off;' & sleep 5
 
 if [ "$ENABLE_LETSENCRYPT" = True ] && [ "$DOMAIN_NAME" ] && [ "$USER_EMAIL" ]; then
-
-fullchain_path="/var/log/letsencrypt/live/${DOMAIN_NAME}/fullchain.pem"
-
-certbot certonly -n --webroot --webroot-path /usr/share/nginx/html --no-redirect --agree-tos --email "$USER_EMAIL" -d "$DOMAIN_NAME" --config-dir /var/log/letsencrypt/ --work-dir /var/log/letsencrypt/work --logs-dir /var/log/letsencrypt/log 
+ fullchain_path="/var/log/letsencrypt/live/${DOMAIN_NAME}/fullchain.pem"
+  certbot certonly -n --webroot --webroot-path /usr/share/nginx/html --no-redirect --agree-tos --email "$USER_EMAIL" -d "$DOMAIN_NAME" --config-dir /var/log/letsencrypt/ --work-dir /var/log/letsencrypt/work --logs-dir /var/log/letsencrypt/log 
 
   if [ $? -eq 0 ]; then
 
@@ -145,8 +143,9 @@ certbot certonly -n --webroot --webroot-path /usr/share/nginx/html --no-redirect
   else
     echo "Failed to obtain Let's Encrypt certificate."
   fi
+
+  crond -b -l 5
 fi
 
-crond -b -l 5
 
 tail -f /dev/null
