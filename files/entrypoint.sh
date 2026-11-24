@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ip a | egrep -q 'inet6 '
 if [[ $? -ne 0 ]]; then
@@ -116,24 +116,24 @@ fi
 
 fi
 
-
-if [ "$DOMAIN_NAME" ]; then
-sed -i "/\bYOURDOMAIN\b/c\ server_name _ localhost ${DOMAIN_NAME};" "${CONFIG}"
+DOMAIN_ARRAY=()
+if [ "$DOMAIN_NAME" != false ]; then
+  IFS=',' read -a DOMAIN_ARRAY <<< "$DOMAIN_NAME"
+  echo "Configuring domain name/s - ${DOMAIN_ARRAY[*]}"
+  sed -i "/\bYOURDOMAIN\b/c\ server_name _ localhost ${DOMAIN_ARRAY[*]};" "${CONFIG}"
 fi
 
 nginx -g 'daemon off;' & sleep 5
 
 if [ "$ENABLE_LETSENCRYPT" = True ] && [ "$DOMAIN_NAME" ] && [ "$USER_EMAIL" ]; then
-
-fullchain_path="/var/log/letsencrypt/live/${DOMAIN_NAME}/fullchain.pem"
-
-certbot certonly -n --webroot --webroot-path /usr/share/nginx/html --no-redirect --agree-tos --email "$USER_EMAIL" -d "$DOMAIN_NAME" --config-dir /var/log/letsencrypt/ --work-dir /var/log/letsencrypt/work --logs-dir /var/log/letsencrypt/log 
+  fullchain_path="/var/log/letsencrypt/live/${DOMAIN_ARRAY[0]}/fullchain.pem"
+  certbot certonly -n --webroot --webroot-path /usr/share/nginx/html --no-redirect --agree-tos --email "$USER_EMAIL" --expand ${DOMAIN_ARRAY[@]/#/ -d } --config-dir /var/log/letsencrypt/ --work-dir /var/log/letsencrypt/work --logs-dir /var/log/letsencrypt/log 
 
   if [ $? -eq 0 ]; then
 
       if [ -f "$fullchain_path" ]; then
-      sed -i "/\bssl_certificate\b/c\ssl_certificate \/var\/log\/letsencrypt\/live\/${DOMAIN_NAME}\/fullchain.pem;" "${CONFIG}"
-      sed -i "/\bssl_certificate_key\b/c\ssl_certificate_key \/var\/log\/letsencrypt\/live\/${DOMAIN_NAME}\/privkey.pem;" "${CONFIG}"
+      sed -i "/\bssl_certificate\b/c\ssl_certificate \/var\/log\/letsencrypt\/live\/${DOMAIN_ARRAY[0]}\/fullchain.pem;" "${CONFIG}"
+      sed -i "/\bssl_certificate_key\b/c\ssl_certificate_key \/var\/log\/letsencrypt\/live\/${DOMAIN_ARRAY[0]}\/privkey.pem;" "${CONFIG}"
       nginx -s reload
       echo "Let's Encrypt certificate obtained successfully."
       random_minute=$(shuf -i 0-59 -n 1)
